@@ -2,6 +2,29 @@
   <router-view/>
 </template>
 
+<script>
+export default {
+  created() {
+    const user=sessionStorage.getItem('setUser');
+    console.log('JSON.parse(user)>>', JSON.parse(user));
+    if(user){
+      console.log('사용자정보가 있습니다');
+      this.$store.commit('setUser', JSON.parse(user));
+      console.log(user, this.base64(user)); //10강.
+    }else {
+      console.log('사용자정보가 없습니다')
+    }
+  },
+   methods:{
+    base64(user){
+      return JSON.parse(decodeURIComponent(window.atob(user)))
+    }
+
+   }
+}
+</script>
+
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

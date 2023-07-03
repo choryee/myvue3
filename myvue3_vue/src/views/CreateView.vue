@@ -89,6 +89,8 @@ export default {
           .then(res=>{
             if(res.data.state){
               this.$store.commit('setUser', res.data.result);
+              //sessionStorage.setItem('setUser', JSON.stringify(res.data.result)); //10강. 07'31
+              sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
               //alert(res.data.message)
               // this.$router.push({name: 'SelectView'}); 이 페이지 이동 에러남.
             }else{
@@ -96,6 +98,9 @@ export default {
             }
           })
           .catch(err=>console.log('err>>', err))
+    },
+    base64(user){
+      return window.btoa(encodeURIComponent(JSON.stringify(user)))
     }
   }
 }

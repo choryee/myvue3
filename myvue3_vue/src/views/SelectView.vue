@@ -57,7 +57,7 @@ export default {
   },
   created() {
     const user=sessionStorage.getItem('setUser');
-    console.log((JSON.parse(user)); //10강.
+    //console.log((JSON.parse(user)); //10강.
     //console.log('this.$route>>',this.$route);
     console.log('this.$store>>',this.$store.state.user);
     this.result=this.$store.state.user;
@@ -86,6 +86,7 @@ export default {
     },
     cancel(){
       this.$store.commit('setUser', {})
+      sessionStorage.removeItem('setUser'); //10강. 0852
       this.$router.push({name: 'ListView'});
     }
   }

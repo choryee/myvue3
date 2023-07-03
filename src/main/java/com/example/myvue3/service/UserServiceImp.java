@@ -13,6 +13,7 @@ public class UserServiceImp implements UserService{
     private ResultDTO rDto;
     @Autowired
     private UserDao uDao;
+
     @Override
     public ResultDTO findAll() {
         rDto=new ResultDTO();

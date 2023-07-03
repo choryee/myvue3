@@ -61,6 +61,8 @@ export default {
             if(res.data.state===1){
               alert(res.data.message)
               this.$store.commit('setUser', this.result);//사용자화면에도 업데된 정보 가지게.8강.
+             // sessionStorage.setItem('setUser', JSON.stringify(this.result)); //10강. 07'31
+              sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
               this.$router.push({name:'SelectView'})
             }else {
               alert(res.data.message)
@@ -70,6 +72,9 @@ export default {
     cancel(){
       this.$router.push({name:'SelectView'})
 
+    },
+    base64(user){
+      return window.btoa(encodeURIComponent(JSON.stringify(user)))
     }
   }
 }

@@ -53,8 +53,13 @@ export default {
       console.log('row>>', row)
       store.commit('setUser', row); //7강. 09'00
       //sessionStorage.setItem('setUser', row); //10강. 첨.
-      sessionStorage.setItem('setUser', JSON.stringify(row)); //row가 object이라, 문자열려 변경해야.
+     // sessionStorage.setItem('setUser', JSON.stringify(row)); //row가 object이라, 문자열려 변경해야.
+      // 콘솔창에 개인 데이터가 모두 보여, 그것을 암호화 하는 것. 10강. 1031
+      sessionStorage.setItem('setUser', this.base64(row)); //row가 object이라, 문자열려 변경해야.
       this.$router.push({name: 'SelectView'});
+    },
+    base64(user){
+      return window.btoa(encodeURIComponent(JSON.stringify(user)))
     }
   }
 }
