@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="display-1 text-center">사용자 정보</h1>
+    <h1 class="display-5 text-center">사용자 정보</h1>
     <form>
       <div class="mb-3 mt-3">
         <label for="name" class="form-label">이름:</label>
@@ -56,20 +56,21 @@ export default {
     }
   },
   created() {
-    const user=sessionStorage.getItem('setUser');
+    const user = sessionStorage.getItem('setUser');
+    console.log('seletview.vue user>>', user); // JSON형태로 저장되어 있음.
     //console.log((JSON.parse(user)); //10강.
     //console.log('this.$route>>',this.$route);
-    console.log('this.$store>>',this.$store.state.user);
-    this.result=this.$store.state.user;
+    console.log('selectview.vue this.$store>>',this.$store.state.user);
+    this.result = this.$store.state.user; // user정보를 따로 api호출 필요없이, store에 저장된 정보를 가져오면 된다. 240405
   },
-  methods:{
+  methods : {
     edit(){
       this.$router.push({name:'UpdateView'})
     },
     del(){
       const params={
         params:{
-          no:this.result.no,
+              no : this.result.no,
         }
       }
       axios.delete('http://localhost:8082/delete', params)
@@ -80,14 +81,15 @@ export default {
               }else{
                 alert(res.data.message);
               }
-
           })
           .catch(err=>{console.log('delete err>>',err)})
     },
     cancel(){
       this.$store.commit('setUser', {})
+      console.log('selectview del this.$store>>', this.$store.state.user);
       sessionStorage.removeItem('setUser'); //10강. 0852
       this.$router.push({name: 'ListView'});
+
     }
   }
 

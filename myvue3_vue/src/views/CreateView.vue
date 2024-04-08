@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="display-1 text-center">사용자 등록</h1>
+    <h3 class="display-5 text-center">사용자 등록</h3>
     <form>
       <div class="mb-3 mt-3">
         <label for="name" class="form-label">이름:</label>
@@ -85,14 +85,14 @@ export default {
       // }
       // console.log(this.result)
 
-      axios.put('http://localhost:8082/save', this.result)
+      axios.post('http://localhost:8082/save', this.result)
           .then(res=>{
             if(res.data.state){
               this.$store.commit('setUser', res.data.result);
-              //sessionStorage.setItem('setUser', JSON.stringify(res.data.result)); //10강. 07'31
-              sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
+              sessionStorage.setItem('setUser', JSON.stringify(res.data.result)); //10강. 07'31
+              //sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
               //alert(res.data.message)
-              // this.$router.push({name: 'SelectView'}); 이 페이지 이동 에러남.
+              //this.$router.push({name: 'SelectView'});// 이 페이지 이동 에러남.
             }else{
               alert(res.data.message)
             }
@@ -100,9 +100,9 @@ export default {
           .catch(err=>console.log('err>>', err))
     },
     base64(user){
-      return window.btoa(encodeURIComponent(JSON.stringify(user)))
+      return window.btoa(encodeURIComponent( JSON.stringify(user) ))
     }
   }
-}
+}// export default{}
 </script>
 

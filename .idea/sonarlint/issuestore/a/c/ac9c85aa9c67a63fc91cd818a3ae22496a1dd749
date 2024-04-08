@@ -1,0 +1,19 @@
+
+6
+java:S3010" Remove this assignment of "req".(ù¾°Õ
+;
+java:S3010" Remove this assignment of "res".(Ô©ù²üÿÿÿÿ
+K
+java:S2209"5Change this instance-reference to a static reference.(ù¾°Õ
+P
+java:S2209"5Change this instance-reference to a static reference.(Ô©ù²üÿÿÿÿ
+N
+java:S1854/"8Remove this useless assignment to local variable "name".(Û÷“ë
+‡
+java:S1130*"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ŠÈ¸ûýÿÿÿÿ
+?
+java:S1481/")Remove this unused "name" local variable.(Û÷“ë
+E	java:S106B"+Replace this use of System.out by a logger.(î¥›æýÿÿÿÿ
+Q	java:S125@"<This block of commented-out lines of code should be removed.(Ôå×Ä
+T
+java:S1128"9Remove this unused import 'org.springframework.ui.Model'.(ê†ýÿÿÿÿ

@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="display-1 text-center">사용자 수정</h1>
+    <h1 class="display-5 text-center">사용자 수정</h1>
     <form>
       <div class="mb-3 mt-3">
         <label for="name" class="form-label">이름:</label>
@@ -43,6 +43,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
 
 export default {
   name:'UpdateView',
@@ -52,26 +53,30 @@ export default {
     }
   },
   created() {
-    this.result=this.$store.state.user;
+    this.result = this.$store.state.user;
   },
   methods:{
     save(){
+      console.log('this.$router >>>', this.$router);
       axios.post('http://localhost:8082/editById', this.result)
           .then(res=>{
             if(res.data.state===1){
-              alert(res.data.message)
-              this.$store.commit('setUser', this.result);//사용자화면에도 업데된 정보 가지게.8강.
-             // sessionStorage.setItem('setUser', JSON.stringify(this.result)); //10강. 07'31
-              sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
-              this.$router.push({name:'SelectView'})
+
+              alert(res.data.message); // UserServiceImp.java에 내용 저장된 것 표출하는 것.
+              this.$store.commit('setUser', this.result); //사용자 메인 화면에도 업데된 정보 가지게.8강.
+              sessionStorage.setItem('setUser', JSON.stringify(this.result)); //10강. 07'31
+              // sessionStorage.setItem('setUser', this.base64(res.data.result)); //10강.
+              //this.$router.push({name:'SelectView'});
+              this.cancel();
             }else {
               alert(res.data.message)
             }
           })
     },
     cancel(){
-      this.$router.push({name:'SelectView'})
-
+      //this.$router.push({name: 'ListView'});
+      //this.$router.back();
+      this.$router.push({ name: 'SelectView' })
     },
     base64(user){
       return window.btoa(encodeURIComponent(JSON.stringify(user)))
